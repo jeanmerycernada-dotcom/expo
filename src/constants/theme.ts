@@ -1,3 +1,5 @@
+import { avatar, profiles } from './images';
+
 export const colors = {
   bg: '#17212B',
   surface: '#242F3D',
@@ -13,10 +15,10 @@ export const colors = {
 export const MAX_CONTENT_WIDTH = 640;
 
 export const stories = [
-  { name: 'My Story', image: 'https://i.pravatar.cc/150?img=12' },
-  { name: 'Sendanan', image: 'https://i.pravatar.cc/150?img=47' },
-  { name: 'Michael', image: 'https://i.pravatar.cc/150?img=11' },
-  { name: 'Angela', image: 'https://i.pravatar.cc/150?img=44' },
-  { name: 'John', image: 'https://i.pravatar.cc/150?img=13' },
-  { name: 'Sophia', image: 'https://i.pravatar.cc/150?img=49' },
+  { name: 'My Story', image: avatar },
+  { name: 'Sendanan', image: profiles[0] },
+  { name: 'Michael', image: profiles[2] },
+  { name: 'Angela', image: profiles[3] },
+  { name: 'John', image: profiles[4] },
+  { name: 'Sophia', image: profiles[5] },
 ];

@@ -1,9 +1,9 @@
 import Card from '@/src/components/card';
 import ScreenContainer from '@/src/components/screen-container';
 import { colors } from '@/src/constants/theme';
-import { API_URL, Post } from '@/src/hooks/use-posts';
+import { API_URL, Post, deletePost } from '@/src/hooks/use-posts';
 import axios from 'axios';
-import { useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, ScrollView, Text } from 'react-native';
 
@@ -33,7 +33,8 @@ export default function PostById() {
             {loading ? (
                 <ActivityIndicator size="large" color={colors.accent} style={{ marginTop: 40 }} />
             ) : product ? (
-                <ScrollView><Card id={product.id} name={product.name} description={product.description} image={product.image} /></ScrollView>
+                <ScrollView><Card id={product.id} name={product.name} description={product.description} image={product.image}
+                    onDelete={() => deletePost(product.id).then(() => router.back()).catch(console.log)} /></ScrollView>
             ) : (
                 <Text style={{ color: colors.textSecondary, textAlign: 'center', marginTop: 40 }}>Post not found.</Text>
             )}

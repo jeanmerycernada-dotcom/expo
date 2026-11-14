@@ -6,6 +6,8 @@ export type Post = { id: string; name: string; description: string; image: strin
 
 export const API_URL = 'https://6af3f9fe55a1de7dcf03745a.mockapi.io/api/products/items';
 
+export const deletePost = (id: string) => axios.delete(`${API_URL}/${id}`);
+
 export function usePosts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,7 @@ export function usePosts() {
     setError(false);
     try {
       const { data } = await axios.get(API_URL);
-      setPosts([...data].sort((a: Post, b: Post) => Number(b.id) - Number(a.id)));
+      setPosts([...data].filter((p: Post) => typeof p.image === 'string' && p.image.trim() !== '').sort((a: Post, b: Post) => Number(b.id) - Number(a.id)));
     } catch (e) {
       console.log(e);
       setError(true);
@@ -27,7 +29,16 @@ export function usePosts() {
     }
   }, []);
 
+  const remove = useCallback(async (id: string) => {
+    try {
+      await deletePost(id);
+      setPosts((prev) => prev.filter((p) => p.id !== id));
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
   useFocusEffect(useCallback(() => { load(); }, [load]));
 
-  return { posts, loading, refreshing, error, refresh: () => load(true), reload: () => load() };
+  return { posts, loading, refreshing, error, refresh: () => load(true), reload: () => load(), remove };
 }

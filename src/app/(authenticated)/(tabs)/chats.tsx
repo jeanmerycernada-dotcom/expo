@@ -1,17 +1,17 @@
 
-import React from 'react';
 
 import ScreenContainer from '@/src/components/screen-container';
+import { profiles } from '@/src/constants/images';
 import { stories } from '@/src/constants/theme';
 
 import {
-  View,
-  Text,
   Image,
-  TextInput,
   ScrollView,
-  StyleSheet,
   StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
 
 import {
@@ -35,7 +35,7 @@ export default function Chats() {
       name: 'Sendanan',
       message: 'See you tomorrow!',
       time: '10:45 AM',
-      image: 'https://i.pravatar.cc/150?img=47',
+      image: profiles[0],
       unread: 2,
       online: true,
       pinned: true,
@@ -44,7 +44,7 @@ export default function Chats() {
       name: 'Family Group',
       message: 'Mom: Dont forget to eat.',
       time: '10:30 AM',
-      image: 'https://i.pravatar.cc/150?img=5',
+      image: profiles[1],
       unread: 5,
       online: false,
       pinned: true,
@@ -53,7 +53,7 @@ export default function Chats() {
       name: 'Michael',
       message: 'Did you finish the project?',
       time: '9:55 AM',
-      image: 'https://i.pravatar.cc/150?img=11',
+      image: profiles[2],
       unread: 1,
       online: true,
       pinned: false,
@@ -62,7 +62,7 @@ export default function Chats() {
       name: 'Angela',
       message: 'Thank you so much!',
       time: '9:20 AM',
-      image: 'https://i.pravatar.cc/150?img=44',
+      image: profiles[3],
       unread: 0,
       online: false,
       pinned: false,
@@ -71,7 +71,7 @@ export default function Chats() {
       name: 'Classmates',
       message: 'John: Check the group chat.',
       time: 'Yesterday',
-      image: 'https://i.pravatar.cc/150?img=8',
+      image: profiles[4],
       unread: 12,
       online: false,
       pinned: false,
@@ -80,7 +80,7 @@ export default function Chats() {
       name: 'Sophia',
       message: 'Sent a photo',
       time: 'Yesterday',
-      image: 'https://i.pravatar.cc/150?img=49',
+      image: profiles[5],
       unread: 0,
       online: true,
       pinned: false,
@@ -89,7 +89,7 @@ export default function Chats() {
       name: 'David',
       message: 'Okay, thank you!',
       time: 'Yesterday',
-      image: 'https://i.pravatar.cc/150?img=15',
+      image: profiles[6],
       unread: 0,
       online: false,
       pinned: false,
@@ -98,7 +98,7 @@ export default function Chats() {
       name: 'IT Students',
       message: 'Mark: Good morning everyone!',
       time: 'Monday',
-      image: 'https://i.pravatar.cc/150?img=60',
+      image: profiles[7],
       unread: 3,
       online: false,
       pinned: false,
@@ -107,7 +107,7 @@ export default function Chats() {
       name: 'Jessica',
       message: 'Haha that was funny 😂',
       time: 'Monday',
-      image: 'https://i.pravatar.cc/150?img=32',
+      image: profiles[8],
       unread: 0,
       online: false,
       pinned: false,
@@ -116,7 +116,7 @@ export default function Chats() {
       name: 'Robert',
       message: 'See you later.',
       time: 'Sunday',
-      image: 'https://i.pravatar.cc/150?img=68',
+      image: profiles[9],
       unread: 0,
       online: false,
       pinned: false,
@@ -216,7 +216,7 @@ export default function Chats() {
               <View style={styles.storyImageContainer}>
 
                 <Image
-                  source={{ uri: item.image }}
+                  source={item.image}
                   style={styles.storyImage}
                 />
 
@@ -268,7 +268,7 @@ export default function Chats() {
               <View style={styles.avatarContainer}>
 
                 <Image
-                  source={{ uri: item.image }}
+                  source={item.image}
                   style={styles.avatar}
                 />
 

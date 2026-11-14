@@ -7,7 +7,7 @@ import { Plus, Send } from "lucide-react-native";
 import { ActivityIndicator, FlatList, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 export default function Home() {
-  const { posts, loading, refreshing, error, refresh, reload } = usePosts();
+  const { posts, loading, refreshing, error, refresh, reload, remove } = usePosts();
   const { width } = useWindowDimensions();
   const size = Math.max(60, Math.min(76, Math.round(Math.min(width, 640) * 0.17))); // story ring scales with screen
 
@@ -16,7 +16,7 @@ export default function Home() {
       {stories.map((s, i) => (
         <View key={s.name} style={{ alignItems: "center", width: size + 10 }}>
           <View style={[styles.ring, { width: size, height: size, borderRadius: size / 2 }]}>
-            <Image source={{ uri: s.image }} style={{ flex: 1, borderRadius: size / 2 }} />
+            <Image source={s.image} resizeMode="cover" style={{ width: "100%", height: "100%", borderRadius: size / 2 }} />
             {i === 0 && <View style={styles.plus}><Plus size={14} color="#fff" /></View>}
           </View>
           <Text style={styles.storyName} numberOfLines={1}>{s.name}</Text>
@@ -52,7 +52,8 @@ export default function Home() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={colors.accent} />}
         renderItem={({ item }) => (
           <Card id={item.id} name={item.name} description={item.description} image={item.image}
-            onPress={() => router.push({ pathname: "/posts/[id]", params: { id: item.id } })} />
+            onPress={() => router.push({ pathname: "/posts/[id]", params: { id: item.id } })}
+            onDelete={() => remove(item.id)} />
         )}
       />
     </ScreenContainer>
